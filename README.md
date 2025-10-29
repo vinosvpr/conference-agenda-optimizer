@@ -1,27 +1,51 @@
-# ConferenceAgendaOptimizer
+🧠 Conference Agenda Optimizer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.17.
+Optimize your conference schedule effortlessly — filter, prioritize, and auto-generate your best possible agenda.
 
-## Development server
+🚀 Live Demo
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+👉 View on GitHub Pages - https://vinosvpr.github.io/conference-agenda-optimizer/
 
-## Code scaffolding
+🖼️ Preview
+<img width="1928" height="1088" alt="infrrd-conference-agenda-optimizer-prototype" src="https://github.com/user-attachments/assets/c7c4e363-d985-437b-8e29-4d0e7526cbd5" />
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+🧩 Features
 
-## Build
+✅ Filter sessions by track, speaker, and priority
+✅ Smart optimization with must-include sessions
+✅ Built using Angular 17 + Signals + CDK Virtual Scroll
+✅ Live URL sync for easy sharing of filters
+✅ Lightweight and responsive UI
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+🛠️ Tech Stack
 
-## Running unit tests
+✅ Angular 18
+✅ TypeScript
+✅ RxJS / Signals
+✅ Angular CDK (Virtual Scroll)
+✅ SCSS
+✅ Deployed with GitHub Pages
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+🧰 Setup & Installation
 
-## Running end-to-end tests
+# Clone the repo
+git clone https://github.com/vinosvpr/conference-agenda-optimizer.git
+cd conference-agenda-optimizer
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+# Install dependencies
+npm install
 
-## Further help
+# Run locally
+ng serve
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+# Build for production
+ng build --base-href "https://vinosvpr.github.io/conference-agenda-optimizer/"
+
+🌐 Deploy to GitHub Pages
+
+npx angular-cli-ghpages --dir=dist/conference-agenda-optimizer
+
+💡 Author
+
+👨‍💻 Vinoth Narayanan
+
