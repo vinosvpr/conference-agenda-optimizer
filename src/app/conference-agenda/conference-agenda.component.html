@@ -1,0 +1,121 @@
+<div class="agenda-container">
+  <h1>🎯 Conference Agenda Optimizer</h1>
+  <div class="agenda-container-main">
+    <!-- Filters -->
+    <div class="filters">
+      <div class="track">
+        <select (change)="filterTrack.set($any($event.target).value)">
+          <option value="">All Tracks</option>
+          <option *ngFor="let t of getUniqueTracks()">{{ t }}</option>
+        </select>
+      </div>
+      <div class="search">
+        <input
+          type="text"
+          placeholder="Search title or speaker"
+          (input)="searchTerm.set($any($event.target).value)"
+        />
+      </div>
+      <div class="priority">
+        <label>
+          Min Priority:
+          <input
+            type="range"
+            min="1"
+            max="10"
+            [value]="minPriority()"
+            (input)="minPriority.set($any($event.target).value)"
+          />
+          {{ minPriority() }}
+        </label>
+      </div>
+    </div>
+    <p class="filter-count">
+      <ng-container *ngIf="filteredCount() > 0; else noMatches">
+        {{ filteredCount() }} session{{ filteredCount() > 1 ? "'s" : "" }} match
+        your filter
+      </ng-container>
+      <ng-template #noMatches>No sessions match your filter</ng-template>
+    </p>
+    <!-- Session List -->
+    <div class="session-list">
+      <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
+        <table class="session-table">
+          <thead>
+            <tr>
+              <th>Track</th>
+              <th>★ Must Include</th>
+              <th>Title</th>
+              <th>Speaker</th>
+              <th>Start</th>
+              <th>End</th>
+              <th>Priority</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngIf="filteredSessions().length > 0; else noResults">
+              <tr
+                *cdkVirtualFor="let s of filteredSessions(); trackBy: trackById"
+              >
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                  <input
+                    type="checkbox"
+                    [checked]="s.selected"
+                    (change)="agenda.toggleSelect(s)"
+                  />
+                </td>
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                  <span
+                    class="star"
+                    (click)="agenda.toggleMustInclude(s)"
+                    [class.active]="s.mustInclude"
+                  >
+                    ★
+                  </span>
+                </td>
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                  {{ s.title }}
+                </td>
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                  {{ s.speaker }}
+                </td>
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                  {{ s.start }}
+                </td>
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                  {{ s.end }}
+                </td>
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                  {{ s.priority }}
+                </td>
+              </tr>
+            </ng-container>
+            <ng-template #noResults>
+              <tr>
+                <td colspan="7" class="no-results">No results found</td>
+              </tr>
+            </ng-template>
+          </tbody>
+        </table>
+      </cdk-virtual-scroll-viewport>
+    </div>
+  </div>
+  <button (click)="generateOptimizedAgenda()">
+    Generate My Optimized Agenda
+  </button>
+
+  <!-- Optimized Results -->
+  <div class="optimized-results" *ngIf="optimizedSessions().length">
+    <h3>Optimized Agenda</h3>
+    <p>
+      Optimized from {{ filteredSessions().length }} sessions →
+      {{ optimizedSessions().length }} selected (Total Priority:
+      {{ totalPriority() }})
+    </p>
+    <ul>
+      <li *ngFor="let s of optimizedSessions()">
+        {{ s.title }} - {{ s.speaker }} - {{ s.start }} to {{ s.end }}
+      </li>
+    </ul>
+  </div>
+</div>
