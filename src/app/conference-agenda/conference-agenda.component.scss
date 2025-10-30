@@ -304,3 +304,168 @@
   white-space: nowrap;
   border: 0;
 }
+/* Responsive design */
+@media (max-width: 1024px) {
+  .agenda-container {
+    max-width: 95%;
+    border-radius: 30px;
+
+    h1 {
+      font-size: 1.3rem;
+    }
+
+    .agenda-container-main {
+      margin: 10px;
+      padding: 15px;
+
+      .filters {
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        .track select {
+          width: 160px;
+        }
+
+        .search input {
+          width: 200px;
+        }
+
+        .priority {
+          margin-left: 0;
+          width: 100%;
+          display: flex;
+          justify-content: flex-start;
+          label {
+            flex-wrap: wrap;
+          }
+        }
+      }
+
+      .session-list {
+        height: 260px;
+      }
+    }
+
+    button {
+      padding: 0.6rem 3rem;
+      font-size: 0.95rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .agenda-container {
+    border-radius: 20px;
+    padding: 0.8rem;
+
+    h1 {
+      font-size: 1.2rem;
+    }
+
+    .agenda-container-main {
+      margin: 10px 0;
+      padding: 15px;
+
+      .filters {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0.75rem;
+
+        .track,
+        .search,
+        .priority {
+          width: 100%;
+          margin: 0;
+        }
+
+        .track select,
+        .search input {
+          width: 100%;
+        }
+
+        .priority input[type="range"] {
+          width: 100%;
+        }
+      }
+
+      .filter-count {
+        text-align: center;
+        font-size: 14px;
+      }
+
+      .session-list {
+        height: 240px;
+
+        .session-table {
+          font-size: 13px;
+
+          thead {
+            th {
+              padding: 0.4rem;
+              font-size: 13px;
+            }
+          }
+
+          tbody td {
+            padding: 0.4rem;
+            font-size: 13px;
+          }
+        }
+      }
+    }
+
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      font-size: 1rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .agenda-container {
+    padding: 0.6rem;
+
+    h1 {
+      font-size: 1.1rem;
+    }
+
+    .agenda-container-main {
+      padding: 10px;
+
+      .filters {
+        gap: 0.5rem;
+
+        .track select,
+        .search input {
+          font-size: 13px;
+          padding: 0.4rem;
+        }
+      }
+
+      .session-list {
+        height: 220px;
+        overflow-x: auto;
+
+        .session-table {
+          min-width: 600px; /* Allow horizontal scroll if needed */
+          font-size: 12px;
+        }
+      }
+    }
+
+    button {
+      font-size: 0.9rem;
+      padding: 0.6rem;
+    }
+
+    .optimized-results {
+      margin: 10px;
+      padding: 10px;
+
+      p {
+        font-size: 14px;
+      }
+    }
+  }
+}

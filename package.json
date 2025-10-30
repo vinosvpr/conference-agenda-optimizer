@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "powershell -Command \"$msg = Read-Host 'Enter commit message'; git add .; git commit -m \\\"$msg\\\"; git push origin main; ng build --configuration production --base-href 'https://vinosvpr.github.io/conference-agenda-optimizer/'; npx angular-cli-ghpages --dir=dist/conference-agenda-optimizer/browser\""
   },
   "private": true,
   "dependencies": {
