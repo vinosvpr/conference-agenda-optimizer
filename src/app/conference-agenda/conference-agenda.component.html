@@ -1,18 +1,19 @@
-<div class="agenda-container">
-  <h1>🎯 Conference Agenda Optimizer</h1>
+<div class="agenda-container" role="main" aria-labelledby="agendaTitle">
+  <h1 id="agendaTitle">🎯 Conference Agenda Optimizer</h1>
   <div class="agenda-container-main">
     <!-- Filters -->
-    <div class="filters">
-      <div class="track">
+    <div class="filters" role="region" aria-label="Filter Options">
+      <div class="track" aria-label="Filter sessions by track">
         <select (change)="filterTrack.set($any($event.target).value)">
           <option value="">All Tracks</option>
           <option *ngFor="let t of getUniqueTracks()">{{ t }}</option>
         </select>
       </div>
-      <div class="search">
+      <div class="search" aria-label="Search title or speaker">
         <input
           type="text"
           placeholder="Search title or speaker"
+          aria-label="Search by title or speaker"
           (input)="searchTerm.set($any($event.target).value)"
         />
       </div>
@@ -25,12 +26,16 @@
             max="10"
             [value]="minPriority()"
             (input)="minPriority.set($any($event.target).value)"
+            aria-valuemin="1"
+            aria-valuemax="10"
+            [attr.aria-valuenow]="minPriority()"
+            aria-label="Select minimum priority"
           />
           {{ minPriority() }}
         </label>
       </div>
     </div>
-    <p class="filter-count">
+    <p class="filter-count" role="status" aria-live="polite">
       <ng-container *ngIf="filteredCount() > 0; else noMatches">
         {{ filteredCount() }} session{{ filteredCount() > 1 ? "'s" : "" }} match
         your filter
@@ -38,54 +43,66 @@
       <ng-template #noMatches>No sessions match your filter</ng-template>
     </p>
     <!-- Session List -->
-    <div class="session-list">
+    <div class="session-list" role="region" aria-label="Session List">
       <cdk-virtual-scroll-viewport itemSize="50" class="viewport">
-        <table class="session-table">
+        <table
+          class="session-table"
+          role="table"
+          aria-describedby="filterResults"
+        >
           <thead>
-            <tr>
-              <th>Track</th>
-              <th>★ Must Include</th>
-              <th>Title</th>
-              <th>Speaker</th>
-              <th>Start</th>
-              <th>End</th>
-              <th>Priority</th>
+            <tr role="row">
+              <th role="columnheader">Track</th>
+              <th role="columnheader">★ Must Include</th>
+              <th role="columnheader">Title</th>
+              <th role="columnheader">Speaker</th>
+              <th role="columnheader">Start</th>
+              <th role="columnheader">End</th>
+              <th role="columnheader">Priority</th>
             </tr>
           </thead>
           <tbody>
             <ng-container *ngIf="filteredSessions().length > 0; else noResults">
               <tr
                 *cdkVirtualFor="let s of filteredSessions(); trackBy: trackById"
+                role="row"
               >
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
                   <input
                     type="checkbox"
                     [checked]="s.selected"
                     (change)="agenda.toggleSelect(s)"
+                    [attr.aria-label]="'Select session ' + s.title"
                   />
                 </td>
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
                   <span
                     class="star"
                     (click)="agenda.toggleMustInclude(s)"
                     [class.active]="s.mustInclude"
+                    [attr.aria-pressed]="s.mustInclude"
+                    [attr.aria-label]="
+                      s.mustInclude
+                        ? 'Remove from must include list'
+                        : 'Add to must include list'
+                    "
                   >
                     ★
                   </span>
                 </td>
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
                   {{ s.title }}
                 </td>
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
                   {{ s.speaker }}
                 </td>
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
                   {{ s.start }}
                 </td>
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
                   {{ s.end }}
                 </td>
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''">
+                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
                   {{ s.priority }}
                 </td>
               </tr>
@@ -100,20 +117,28 @@
       </cdk-virtual-scroll-viewport>
     </div>
   </div>
-  <button (click)="generateOptimizedAgenda()">
+  <button
+    (click)="generateOptimizedAgenda()"
+    aria-label="Generate optimized agenda based on selected sessions"
+  >
     Generate My Optimized Agenda
   </button>
 
   <!-- Optimized Results -->
-  <div class="optimized-results" *ngIf="optimizedSessions().length">
-    <h3>Optimized Agenda</h3>
-    <p>
+  <div
+    class="optimized-results"
+    *ngIf="optimizedSessions().length"
+    role="region"
+    aria-label="Optimized Agenda Results"
+  >
+    <h3 role="heading" aria-level="2">Optimized Agenda</h3>
+    <p role="status" aria-live="polite">
       Optimized from {{ filteredSessions().length }} sessions →
       {{ optimizedSessions().length }} selected (Total Priority:
       {{ totalPriority() }})
     </p>
-    <ul>
-      <li *ngFor="let s of optimizedSessions()">
+    <ul role="list">
+      <li *ngFor="let s of optimizedSessions()" role="listitem">
         {{ s.title }} - {{ s.speaker }} - {{ s.start }} to {{ s.end }}
       </li>
     </ul>
