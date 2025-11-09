@@ -1,5 +1,5 @@
 id,title,speaker,room,track,start,end,priority
-1,Deep Learning Tricks,P. Dutta,Main Hall,Backend,13:07,13:52,4
+1,Deep Learning Tricks,P. Dutta,Main Hall,Data,13:07,13:52,4
 2,AI Ethics,R. Sharma,Main Hall,Keynote,15:58,16:28,5
 3,Performance Optimization,M. Desai,Room C,Keynote,10:40,11:10,8
 4,Reactive Patterns,P. Dutta,Room B,UX,13:47,14:47,8
@@ -8,94 +8,94 @@ id,title,speaker,room,track,start,end,priority
 7,Scaling Microservices,D. Bose,Room A,Frontend,10:04,11:04,5
 8,Database Sharding,A. Ghosh,Room B,Keynote,16:05,16:50,6
 9,Container Orchestration,L. Banerjee,Main Hall,Backend,9:05,9:50,10
-10,Performance Optimization,S. Chawla,Room C,Data,9:56,10:56,2
-11,Cloud Security,R. Sharma,Room B,UX,15:57,16:27,10
+10,Performance Optimization,S. Chawla,Room C,Keynote,9:56,10:56,2
+11,Cloud Security,R. Sharma,Room B,Security,15:57,16:27,10
 12,GraphQL in Action,D. Bose,Room B,Security,13:23,13:53,7
 13,DevOps at Scale,N. Reddy,Main Hall,Keynote,15:12,16:12,9
 14,Deep Learning Tricks,N. Reddy,Room B,Data,12:33,13:03,6
 15,Design Thinking,A. Ghosh,Room C,Cloud,10:39,11:24,5
-16,Serverless Functions,R. Pillai,Main Hall,Keynote,12:11,12:41,8
-17,Quantum Computing Basics,R. Sharma,Room A,Frontend,9:40,10:10,3
+16,Serverless Functions,R. Pillai,Main Hall,Data,12:11,12:41,8
+17,Quantum Computing Basics,R. Sharma,Room A,Data,9:40,10:10,3
 18,Building with AI APIs,D. Bose,Room B,Cloud,14:15,15:00,8
-19,Building with AI APIs,P. Dutta,Room D,Frontend,12:02,12:32,10
-20,Cloud Security,K. Iyer,Room D,Cloud,10:12,10:57,5
-21,GraphQL in Action,R. Sharma,Room A,Data,16:44,17:29,10
-22,Modern UX Principles,L. Banerjee,Main Hall,Backend,9:15,9:45,9
-23,Performance Optimization,N. Kumar,Room B,Backend,13:55,14:25,10
-24,Performance Optimization,K. Iyer,Room A,Security,14:25,15:10,9
-25,Container Orchestration,Dr. Rao,Room A,AI/ML,15:20,16:20,2
-26,DevOps at Scale,P. Mehta,Room D,Backend,12:01,12:46,4
+19,Building with AI APIs,P. Dutta,Room D,Cloud,12:02,12:32,10
+20,Cloud Security,K. Iyer,Room D,Security,10:12,10:57,5
+21,GraphQL in Action,R. Sharma,Room A,Security,16:44,17:29,10
+22,Modern UX Principles,L. Banerjee,Main Hall,UX,9:15,9:45,9
+23,Performance Optimization,N. Kumar,Room B,Keynote,13:55,14:25,10
+24,Performance Optimization,K. Iyer,Room A,Keynote,14:25,15:10,9
+25,Container Orchestration,Dr. Rao,Room A,Backend,15:20,16:20,2
+26,DevOps at Scale,P. Mehta,Room D,Keynote,12:01,12:46,4
 27,Edge Compute 101,C. Menon,Main Hall,Security,15:42,16:12,3
-28,Design Thinking,N. Kumar,Main Hall,AI/ML,10:59,11:44,4
+28,Design Thinking,N. Kumar,Main Hall,Cloud,10:59,11:44,4
 29,AR/VR Integration,P. Mehta,Main Hall,UX,13:51,14:21,4
-30,Modern UX Principles,Anita Singh,Room A,Backend,14:05,14:35,6
-31,Advanced TypeScript,C. Menon,Room A,Backend,15:09,15:54,8
-32,Data Pipelines,D. Bose,Room B,UX,13:01,13:46,5
-33,Edge Compute 101,P. Mehta,Main Hall,Backend,11:30,12:15,8
-34,AR/VR Integration,R. Patel,Room A,Keynote,11:52,12:37,1
-35,Deep Learning Tricks,N. Kumar,Room D,AI/ML,14:03,14:33,8
-36,Design Thinking,A. Ghosh,Room B,UX,14:53,15:53,6
-37,Container Orchestration,M. Desai,Room D,AI/ML,9:35,10:20,9
-38,GraphQL in Action,P. Dutta,Main Hall,Frontend,11:22,12:07,6
-39,Quantum Computing Basics,Dr. Rao,Main Hall,Frontend,15:25,16:10,7
-40,Design Thinking,D. Bose,Room C,Data,11:22,11:52,5
+30,Modern UX Principles,Anita Singh,Room A,UX,14:05,14:35,6
+31,Advanced TypeScript,C. Menon,Room A,Frontend,15:09,15:54,8
+32,Data Pipelines,D. Bose,Room B,Data,13:01,13:46,5
+33,Edge Compute 101,P. Mehta,Main Hall,Security,11:30,12:15,8
+34,AR/VR Integration,R. Patel,Room A,UX,11:52,12:37,1
+35,Deep Learning Tricks,N. Kumar,Room D,Data,14:03,14:33,8
+36,Design Thinking,A. Ghosh,Room B,Cloud,14:53,15:53,6
+37,Container Orchestration,M. Desai,Room D,Backend,9:35,10:20,9
+38,GraphQL in Action,P. Dutta,Main Hall,Security,11:22,12:07,6
+39,Quantum Computing Basics,Dr. Rao,Main Hall,Data,15:25,16:10,7
+40,Design Thinking,D. Bose,Room C,Cloud,11:22,11:52,5
 41,Signals in Angular,S. Raj,Room C,Frontend,16:14,16:59,5
-42,Edge Compute 101,S. Raj,Room D,Keynote,11:43,12:43,8
-43,Performance Optimization,R. Sharma,Room A,Frontend,10:31,11:31,9
-44,Quantum Computing Basics,R. Patel,Main Hall,UX,9:53,10:23,1
-45,AI Ethics,R. Pillai,Room A,Frontend,13:41,14:41,5
-46,AR/VR Integration,S. Chawla,Room D,Cloud,13:25,13:55,10
-47,Reactive Patterns,N. Reddy,Room D,AI/ML,10:42,11:12,6
-48,Container Orchestration,K. Iyer,Room B,AI/ML,12:51,13:51,5
-49,Signals in Angular,V. Gupta,Room A,Security,15:01,15:31,6
+42,Edge Compute 101,S. Raj,Room D,Security,11:43,12:43,8
+43,Performance Optimization,R. Sharma,Room A,Keynote,10:31,11:31,9
+44,Quantum Computing Basics,R. Patel,Main Hall,Data,9:53,10:23,1
+45,AI Ethics,R. Pillai,Room A,Keynote,13:41,14:41,5
+46,AR/VR Integration,S. Chawla,Room D,UX,13:25,13:55,10
+47,Reactive Patterns,N. Reddy,Room D,UX,10:42,11:12,6
+48,Container Orchestration,K. Iyer,Room B,Backend,12:51,13:51,5
+49,Signals in Angular,V. Gupta,Room A,Frontend,15:01,15:31,6
 50,AR/VR Integration,N. Kumar,Room A,UX,14:21,15:06,3
-51,Building with AI APIs,L. Banerjee,Room B,Security,12:47,13:47,4
-52,AR/VR Integration,S. Raj,Room B,Data,9:50,10:20,7
-53,Scaling Microservices,A. Ghosh,Room B,Data,12:49,13:19,1
-54,Design Thinking,A. Thomas,Room B,Keynote,11:42,12:27,9
-55,Quantum Computing Basics,A. Ghosh,Room A,Cloud,16:06,16:51,2
-56,Cloud Security,C. Menon,Room C,AI/ML,14:15,14:45,3
+51,Building with AI APIs,L. Banerjee,Room B,Cloud,12:47,13:47,4
+52,AR/VR Integration,S. Raj,Room B,UX,9:50,10:20,7
+53,Scaling Microservices,A. Ghosh,Room B,Frontend,12:49,13:19,1
+54,Design Thinking,A. Thomas,Room B,Cloud,11:42,12:27,9
+55,Quantum Computing Basics,A. Ghosh,Room A,Data,16:06,16:51,2
+56,Cloud Security,C. Menon,Room C,Security,14:15,14:45,3
 57,GraphQL in Action,L. Banerjee,Room B,Security,10:02,10:47,2
 58,Reactive Patterns,C. Menon,Room B,UX,9:39,10:09,9
 59,Modern UX Principles,R. Patel,Room C,UX,12:03,12:33,10
-60,Quantum Computing Basics,P. Mehta,Main Hall,Security,10:01,10:46,10
-61,Scaling Microservices,K. Iyer,Main Hall,UX,14:43,15:43,9
-62,DevOps at Scale,R. Pillai,Room D,Frontend,14:12,15:12,7
+60,Quantum Computing Basics,P. Mehta,Main Hall,Data,10:01,10:46,10
+61,Scaling Microservices,K. Iyer,Main Hall,Frontend,14:43,15:43,9
+62,DevOps at Scale,R. Pillai,Room D,Keynote,14:12,15:12,7
 63,Container Orchestration,P. Dutta,Room B,Backend,14:48,15:48,9
-64,Data Pipelines,A. Ghosh,Room A,Keynote,9:34,10:04,1
-65,AI Ethics,R. Pillai,Room B,Data,11:45,12:30,2
-66,Reactive Patterns,K. Iyer,Main Hall,Keynote,12:25,13:25,8
-67,Edge Compute 101,A. Ghosh,Room B,Cloud,9:03,9:33,9
-68,DevOps at Scale,K. Iyer,Room C,UX,11:16,12:01,1
-69,Signals in Angular,J. Nair,Room D,AI/ML,14:58,15:43,4
+64,Data Pipelines,A. Ghosh,Room A,Data,9:34,10:04,1
+65,AI Ethics,R. Pillai,Room B,Keynote,11:45,12:30,2
+66,Reactive Patterns,K. Iyer,Main Hall,UX,12:25,13:25,8
+67,Edge Compute 101,A. Ghosh,Room B,Security,9:03,9:33,9
+68,DevOps at Scale,K. Iyer,Room C,Keynote,11:16,12:01,1
+69,Signals in Angular,J. Nair,Room D,Frontend,14:58,15:43,4
 70,Advanced TypeScript,J. Nair,Room B,Frontend,14:55,15:25,10
-71,Database Sharding,R. Pillai,Room D,Backend,14:05,14:50,5
-72,DevOps at Scale,D. Bose,Main Hall,Data,16:13,16:43,1
-73,Serverless Functions,K. Iyer,Room C,AI/ML,16:12,16:42,8
-74,Performance Optimization,S. Raj,Main Hall,Frontend,11:13,11:58,7
-75,AI Ethics,Anita Singh,Main Hall,AI/ML,9:46,10:31,7
+71,Database Sharding,R. Pillai,Room D,Keynote,14:05,14:50,5
+72,DevOps at Scale,D. Bose,Main Hall,Keynote,16:13,16:43,1
+73,Serverless Functions,K. Iyer,Room C,Data,16:12,16:42,8
+74,Performance Optimization,S. Raj,Main Hall,Keynote,11:13,11:58,7
+75,AI Ethics,Anita Singh,Main Hall,Keynote,9:46,10:31,7
 76,Performance Optimization,D. Bose,Room D,Keynote,15:56,16:26,10
 77,Database Sharding,Dr. Rao,Room A,Keynote,10:09,11:09,5
-78,Modern UX Principles,R. Sharma,Room D,Backend,10:13,10:43,10
-79,Quantum Computing Basics,S. Raj,Main Hall,Backend,9:16,10:16,3
-80,Signals in Angular,R. Sharma,Main Hall,Cloud,16:18,17:03,7
-81,Signals in Angular,R. Pillai,Room D,Backend,9:13,9:58,10
-82,Serverless Functions,D. Bose,Room B,Keynote,14:04,14:34,1
-83,Deep Learning Tricks,P. Mehta,Room C,UX,16:40,17:25,2
-84,Data Pipelines,M. Desai,Main Hall,Security,15:22,16:07,3
+78,Modern UX Principles,R. Sharma,Room D,UX,10:13,10:43,10
+79,Quantum Computing Basics,S. Raj,Main Hall,Data,9:16,10:16,3
+80,Signals in Angular,R. Sharma,Main Hall,Frontend,16:18,17:03,7
+81,Signals in Angular,R. Pillai,Room D,Frontend,9:13,9:58,10
+82,Serverless Functions,D. Bose,Room B,Data,14:04,14:34,1
+83,Deep Learning Tricks,P. Mehta,Room C,Data,16:40,17:25,2
+84,Data Pipelines,M. Desai,Main Hall,Data,15:22,16:07,3
 85,AR/VR Integration,A. Thomas,Room C,UX,10:39,11:39,3
-86,Design Thinking,C. Menon,Room A,Frontend,9:20,10:20,10
-87,Performance Optimization,K. Iyer,Main Hall,AI/ML,9:54,10:54,5
-88,Data Pipelines,R. Pillai,Room A,Frontend,12:37,13:07,2
-89,AR/VR Integration,C. Menon,Room C,AI/ML,13:45,14:30,3
+86,Design Thinking,C. Menon,Room A,Cloud,9:20,10:20,10
+87,Performance Optimization,K. Iyer,Main Hall,Keynote,9:54,10:54,5
+88,Data Pipelines,R. Pillai,Room A,Data,12:37,13:07,2
+89,AR/VR Integration,C. Menon,Room C,UX,13:45,14:30,3
 90,Data Pipelines,C. Menon,Main Hall,Data,12:58,13:28,4
 91,Container Orchestration,L. Banerjee,Room B,Backend,11:20,11:50,2
-92,Scaling Microservices,A. Ghosh,Room A,Keynote,11:57,12:42,6
-93,Signals in Angular,S. Chawla,Room B,Data,10:48,11:48,6
-94,Scaling Microservices,Anita Singh,Room A,Backend,10:36,11:36,10
+92,Scaling Microservices,A. Ghosh,Room A,Frontend,11:57,12:42,6
+93,Signals in Angular,S. Chawla,Room B,Frontend,10:48,11:48,6
+94,Scaling Microservices,Anita Singh,Room A,Frontend,10:36,11:36,10
 95,Quantum Computing Basics,S. Chawla,Room B,Data,9:19,9:49,6
-96,Advanced TypeScript,V. Gupta,Room A,UX,11:24,11:54,7
-97,Signals in Angular,A. Ghosh,Room D,Cloud,14:41,15:26,4
-98,Database Sharding,V. Gupta,Room D,Data,16:45,17:15,5
-99,Edge Compute 101,S. Raj,Room A,Cloud,16:20,17:05,10
+96,Advanced TypeScript,V. Gupta,Room A,Frontend,11:24,11:54,7
+97,Signals in Angular,A. Ghosh,Room D,Frontend,14:41,15:26,4
+98,Database Sharding,V. Gupta,Room D,Keynote,16:45,17:15,5
+99,Edge Compute 101,S. Raj,Room A,Security,16:20,17:05,10
 100,DevOps at Scale,K. Iyer,Room B,Keynote,15:48,16:33,9
