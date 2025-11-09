@@ -11,8 +11,8 @@ export interface Session {
   mustInclude: boolean;
   selected: boolean;
   conflict?: boolean;
-  formattedStart?: string;
-  formattedEnd?: string;
+  // formattedStart?: string;
+  // formattedEnd?: string;
   tooltip?: string;
 }
 
@@ -21,7 +21,7 @@ export interface Session {
 })
 export class ConferenceAgendaService {
   sessions = signal<Session[]>([]);
-  parseErrors = signal<string[]>([]);
+  // parseErrors = signal<string[]>([]);
 
   constructor() {
     this.loadSampleCSV();
@@ -32,7 +32,6 @@ export class ConferenceAgendaService {
       .then((res) => res.text())
       .then((data) => {
         const lines = data.trim().split('\n');
-
         let sessions: Session[] = lines.map((line) => {
           const [id, title, speaker, room, track, start, end, priority] =
             line.split(',');
@@ -69,12 +68,10 @@ export class ConferenceAgendaService {
       const overlapping = sessions.filter(
         (other, j) => i !== j && other.priority > s.priority
       );
-
       const conflict =
         overlapping.length > 0
           ? overlapping.sort((a, b) => b.priority - a.priority)[0]
           : null;
-
       return {
         ...s,
         tooltip: conflict

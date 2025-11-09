@@ -1,7 +1,18 @@
-import { Component, computed, signal, effect } from '@angular/core';
+import {
+  Component,
+  computed,
+  signal,
+  effect,
+  ViewChild,
+  AfterViewInit,
+  ChangeDetectorRef,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import {
+  CdkVirtualScrollViewport,
+  ScrollingModule,
+} from '@angular/cdk/scrolling';
 import { Router, ActivatedRoute } from '@angular/router';
 import {
   ConferenceAgendaService,
@@ -16,22 +27,26 @@ import { ConferenceOptimizerService } from '../services/conference-optimizer.ser
   templateUrl: './conference-agenda.component.html',
   styleUrl: './conference-agenda.component.scss',
 })
-export class ConferenceAgendaComponent {
+export class ConferenceAgendaComponent implements AfterViewInit {
+  @ViewChild(CdkVirtualScrollViewport) viewport!: CdkVirtualScrollViewport;
+
   filterTrack = signal<string>('');
   filterSpeaker = signal<string>('');
   minPriority = signal<number>(1);
   searchTerm = signal<string>('');
   optimizedSessions = signal<Session[]>([]);
   totalPriority = signal<number>(0);
-  startTimeFilter = signal<string>('');
-  endTimeFilter = signal<string>('');
-  trackById = (_index: number, item: Session) => item.id;
+  sortField = signal<string>('start');
+  sortDirection = signal<'asc' | 'desc'>('asc');
 
+  trackById = (_index: number, item: Session) => item.id;
+  hoveredSession: number | null = null;
   constructor(
     public agenda: ConferenceAgendaService,
     private optimizer: ConferenceOptimizerService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef
   ) {
     // Restore filters from URL on load
     this.route.queryParams.subscribe((params) => {
@@ -53,9 +68,22 @@ export class ConferenceAgendaComponent {
     });
   }
 
+  ngAfterViewInit() {
+    // Trigger viewport refresh whenever filtered list changes
+    effect(() => {
+      const _ = this.filteredSessions();
+      setTimeout(() => {
+        if (this.viewport) {
+          this.viewport.checkViewportSize();
+          this.viewport.scrollToIndex(0);
+        }
+        this.cdr.detectChanges(); // ensure Angular updates view
+      }, 0);
+    });
+  }
+
   filteredSessions = computed(() => {
-    return this.agenda.sessions().filter((s) => {
-      // Always include mustInclude sessions
+    let list = this.agenda.sessions().filter((s) => {
       if (s.mustInclude) return true;
       const matchTrack = !this.filterTrack() || s.track === this.filterTrack();
       const matchSpeaker =
@@ -67,30 +95,73 @@ export class ConferenceAgendaComponent {
         s.speaker.toLowerCase().includes(term);
       return matchTrack && matchSpeaker && matchPriority && matchSearch;
     });
-  });
-  filteredCount = computed(() => this.filteredSessions().length);
-  generateOptimizedAgenda() {
-    const allSessions = this.agenda.sessions();
-    const mustInclude = allSessions.filter((s) => s.mustInclude);
-    const candidates = this.filteredSessions().filter(
-      (s) => s.selected && !s.mustInclude
-    );
-    const result = this.optimizer.optimize(candidates);
-    const nonConflictingMustInclude = mustInclude.filter((m) => {
-      return !result.selected.some((r) => m.start < r.end && m.end > r.start);
+
+    // Apply sorting logic
+    const field = this.sortField();
+    const direction = this.sortDirection();
+
+    list = [...list].sort((a, b) => {
+      let result = 0;
+      if (field === 'start') {
+        result = a.start.localeCompare(b.start);
+      } else if (field === 'priority') {
+        result = a.priority - b.priority;
+      }
+      return direction === 'asc' ? result : -result;
     });
 
-    const combined = [...nonConflictingMustInclude, ...result.selected].sort(
-      (a, b) => a.start.localeCompare(b.start)
-    );
-    this.optimizedSessions.set(combined);
-    this.totalPriority.set(
-      combined.reduce((sum, s) => sum + (s.priority || 0), 0)
-    );
+    return list;
+  });
+
+  filteredCount = computed(() => this.filteredSessions().length);
+
+  setSort(field: string) {
+    if (this.sortField() === field) {
+      this.sortDirection.set(this.sortDirection() === 'asc' ? 'desc' : 'asc');
+    } else {
+      this.sortField.set(field);
+      this.sortDirection.set('asc');
+    }
   }
+
   getUniqueTracks(): string[] {
     return Array.from(
       new Set(this.agenda.sessions().map((s) => s.track))
     ).filter(Boolean);
+  }
+
+  generateOptimizedAgenda() {
+    const allSessions = this.agenda.sessions();
+    // Collect mustInclude sessions
+    const mustInclude = allSessions.filter((s) => s.mustInclude);
+    // Collect all selected sessions (don’t limit by filters)
+    const selectedSessions = allSessions.filter(
+      (s) => s.selected && !s.mustInclude
+    );
+    // Run optimizer on selected sessions
+    const result = this.optimizer.optimize(selectedSessions);
+    // Filter optimizer output to remove conflicts with mustInclude sessions
+    const nonConflictingOptimized = result.selected.filter((r) => {
+      return !mustInclude.some(
+        (m) =>
+          new Date(m.start).getTime() < new Date(r.end).getTime() &&
+          new Date(m.end).getTime() > new Date(r.start).getTime()
+      );
+    });
+    // Merge mustInclude + non-conflicting optimized sessions
+    const combined = [...mustInclude, ...nonConflictingOptimized];
+    // Remove duplicates by ID
+    const uniqueCombined = Array.from(
+      new Map(combined.map((s) => [s.id, s])).values()
+    );
+    // Sort by start time
+    const sortedCombined = uniqueCombined.sort(
+      (a, b) => new Date(a.start).getTime() - new Date(b.start).getTime()
+    );
+    // Update signals
+    this.optimizedSessions.set(sortedCombined);
+    this.totalPriority.set(
+      sortedCombined.reduce((sum, s) => sum + (s.priority || 0), 0)
+    );
   }
 }

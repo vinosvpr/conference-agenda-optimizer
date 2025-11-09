@@ -137,11 +137,15 @@
     .session-list {
       height: 300px;
       border: 0px;
+      position: relative;
+      display: inline-block;
+      width: 100%;
       .viewport {
         height: 100%;
         overflow-y: auto;
         border-radius: 10px;
         background: #fff;
+        max-height: 300px;
         .session-table {
           width: 100%;
           border-collapse: separate;
@@ -468,4 +472,7 @@
       }
     }
   }
+}
+.cursor-pointer {
+  cursor: pointer;
 }

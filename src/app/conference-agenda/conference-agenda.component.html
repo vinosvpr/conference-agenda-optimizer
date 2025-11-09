@@ -17,22 +17,17 @@
           (input)="searchTerm.set($any($event.target).value)"
         />
       </div>
-      <div class="priority">
-        <label>
-          Min Priority:
-          <input
-            type="range"
-            min="1"
-            max="10"
-            [value]="minPriority()"
-            (input)="minPriority.set($any($event.target).value)"
-            aria-valuemin="1"
-            aria-valuemax="10"
-            [attr.aria-valuenow]="minPriority()"
-            aria-label="Select minimum priority"
-          />
-          {{ minPriority() }}
-        </label>
+
+      <div class="track">
+        <label for="sortField">Sort by:</label>
+        <select
+          id="sortField"
+          (change)="sortField.set($any($event.target).value)"
+          [value]="sortField()"
+        >
+          <option value="start">Start Time</option>
+          <option value="priority">Priority</option>
+        </select>
       </div>
     </div>
     <p class="filter-count" role="status" aria-live="polite">
@@ -52,13 +47,34 @@
         >
           <thead>
             <tr role="row">
-              <th role="columnheader">Track</th>
-              <th role="columnheader">★ Must Include</th>
+              <th role="columnheader">Select</th>
+              <!-- <th role="columnheader">★</th> -->
               <th role="columnheader">Title</th>
               <th role="columnheader">Speaker</th>
-              <th role="columnheader">Start</th>
+              <th role="columnheader">Room</th>
+              <th
+                role="columnheader"
+                (click)="setSort('start')"
+                class="sortable"
+                [class.active]="sortField() === 'start'"
+              >
+                Start
+                <span *ngIf="sortField() === 'start'">
+                  {{ sortDirection() === "asc" ? "▲" : "▼" }}
+                </span>
+              </th>
               <th role="columnheader">End</th>
-              <th role="columnheader">Priority</th>
+              <th
+                role="columnheader"
+                (click)="setSort('priority')"
+                class="sortable"
+                [class.active]="sortField() === 'priority'"
+              >
+                Priority
+                <span *ngIf="sortField() === 'priority'">
+                  {{ sortDirection() === "asc" ? "▲" : "▼" }}
+                </span>
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -67,7 +83,7 @@
                 *cdkVirtualFor="let s of filteredSessions(); trackBy: trackById"
                 role="row"
               >
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
+                <td role="cell">
                   <input
                     type="checkbox"
                     [checked]="s.selected"
@@ -75,34 +91,44 @@
                     [attr.aria-label]="'Select session ' + s.title"
                   />
                 </td>
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
+
+                <td
+                  role="cell"
+                  class="session-title-cell cursor-pointer"
+                  (mouseenter)="hoveredSession = s.id"
+                  (mouseleave)="hoveredSession = null"
+                >
+                  <!-- Normal state -->
+                  <span *ngIf="hoveredSession !== s.id && !s.mustInclude">
+                    {{ s.title }}
+                  </span>
+
+                  <!-- Hover or Must Include -->
                   <span
-                    class="star"
-                    (click)="agenda.toggleMustInclude(s)"
+                    *ngIf="hoveredSession === s.id || s.mustInclude"
+                    class="must-include-span"
                     [class.active]="s.mustInclude"
-                    [attr.aria-pressed]="s.mustInclude"
-                    [attr.aria-label]="
-                      s.mustInclude
-                        ? 'Remove from must include list'
-                        : 'Add to must include list'
-                    "
+                    (click)="agenda.toggleMustInclude(s)"
                   >
-                    ★
+                    <ng-container *ngIf="s.mustInclude; else mustText">
+                      <span class="star active">★</span> {{ s.title }}
+                    </ng-container>
+                    <ng-template #mustText>★ Must Include</ng-template>
                   </span>
                 </td>
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
-                  {{ s.title }}
-                </td>
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
+                <td role="cell">
                   {{ s.speaker }}
                 </td>
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
+                <td role="cell">
+                  {{ s.room }}
+                </td>
+                <td role="cell">
                   {{ s.start }}
                 </td>
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
+                <td role="cell">
                   {{ s.end }}
                 </td>
-                <td [attr.title]="!s.mustInclude ? s.tooltip : ''" role="cell">
+                <td role="cell">
                   {{ s.priority }}
                 </td>
               </tr>
@@ -138,8 +164,13 @@
       {{ totalPriority() }})
     </p>
     <ul role="list">
-      <li *ngFor="let s of optimizedSessions()" role="listitem">
-        {{ s.title }} - {{ s.speaker }} - {{ s.start }} to {{ s.end }}
+      <li
+        *ngFor="let s of optimizedSessions()"
+        role="listitem"
+        [attr.title]="!s.mustInclude ? s.tooltip : ''"
+      >
+        {{ s.title }} - {{ s.speaker }} - {{ s.room }} - {{ s.start }} to
+        {{ s.end }}
       </li>
     </ul>
   </div>
