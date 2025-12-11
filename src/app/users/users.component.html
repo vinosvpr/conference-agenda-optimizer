@@ -1,0 +1,55 @@
+<div class="container" [class.dark-theme]="currentTheme === 'dark'">
+  <h2>👥 Users</h2>
+
+  <button (click)="reload()">🔁 Reload Users (Subject)</button>
+  <button (click)="toggleTheme()">🎨 Toggle Theme (BehaviorSubject)</button>
+
+  <h4>Current Theme: {{ currentTheme | uppercase }}</h4>
+
+  <ul>
+    <li *ngFor="let u of users" (click)="viewDetails(u.id)">
+      {{ u.name }}
+    </li>
+  </ul>
+
+  <hr />
+  <!-- 🔍 Search Section -->
+  <div class="search-section">
+    <input
+      type="text"
+      [(ngModel)]="name"
+      placeholder="Search user by name..."
+    />
+    <button (click)="search()">Search</button>
+  </div>
+
+  <!-- 📄 Search Results -->
+  <div *ngIf="posts.length > 0">
+    <h3>Posts by {{ name }}</h3>
+    <div *ngFor="let post of posts" class="post-card">
+      <h4>{{ post.title }}</h4>
+      <p>{{ post.body }}</p>
+    </div>
+  </div>
+
+  <hr />
+  <h3>🧍 Selected User (Signal): {{ userName() }}</h3>
+
+  <div *ngIf="selectedUserPosts.length">
+    <h3>📝 Posts</h3>
+    <ul>
+      <li *ngFor="let post of selectedUserPosts">{{ post.title }}</li>
+    </ul>
+  </div>
+
+  <div *ngIf="todos.length">
+    <h3>✅ Todos</h3>
+    <ul>
+      <li *ngFor="let t of todos">
+        {{ t.title }} -
+        <b>{{ t.completed ? "Done" : "Pending" }}</b>
+      </li>
+    </ul>
+  </div>
+  <button [routerLink]="['/']">Back to Home</button>
+</div>

@@ -13,7 +13,7 @@ import {
   CdkVirtualScrollViewport,
   ScrollingModule,
 } from '@angular/cdk/scrolling';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import {
   ConferenceAgendaService,
   Session,
@@ -23,7 +23,7 @@ import { ConferenceOptimizerService } from '../services/conference-optimizer.ser
 @Component({
   selector: 'app-conference-agenda',
   standalone: true,
-  imports: [CommonModule, FormsModule, ScrollingModule],
+  imports: [CommonModule, FormsModule, ScrollingModule, RouterLink],
   templateUrl: './conference-agenda.component.html',
   styleUrl: './conference-agenda.component.scss',
 })

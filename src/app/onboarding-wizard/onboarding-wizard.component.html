@@ -1,0 +1,90 @@
+<div class="wizard-container">
+  <!-- STEP PROGRESS -->
+  <div class="progress-bar">
+    <div
+      class="fill"
+      [style.width.%]="(currentStep() / totalSteps) * 100"
+    ></div>
+  </div>
+  <p class="progress-text">Step {{ currentStep() }} / {{ totalSteps }}</p>
+
+  <!-- API Messages -->
+  <div *ngIf="apiError()" class="alert-error">{{ apiError() }}</div>
+  <div *ngIf="apiSuccess()" class="alert-success">{{ apiSuccess() }}</div>
+
+  <!-- STEP 1 -->
+  <form *ngIf="currentStep() === 1" [formGroup]="personalGroup">
+    <h2>Personal Info</h2>
+    <input formControlName="firstName" placeholder="First Name" />
+    <div class="error" *ngIf="hasError(personalGroup, 'firstName', 'required')">
+      First Name is required
+    </div>
+
+    <input formControlName="lastName" placeholder="Last Name" />
+    <div class="error" *ngIf="hasError(personalGroup, 'lastName', 'required')">
+      Last Name is required
+    </div>
+
+    <input formControlName="email" placeholder="Email" />
+    <div class="error" *ngIf="hasError(personalGroup, 'email', 'required')">
+      Email is required
+    </div>
+    <div class="error" *ngIf="hasError(personalGroup, 'email', 'email')">
+      Invalid email
+    </div>
+  </form>
+
+  <!-- STEP 2 -->
+  <form *ngIf="currentStep() === 2" [formGroup]="addressGroup">
+    <h2>Address</h2>
+    <input formControlName="addressLine1" placeholder="Address" />
+    <div
+      class="error"
+      *ngIf="hasError(addressGroup, 'addressLine1', 'required')"
+    >
+      Address is required
+    </div>
+    <input formControlName="city" placeholder="City" />
+    <div class="error" *ngIf="hasError(addressGroup, 'city', 'required')">
+      City is required
+    </div>
+    <input formControlName="zip" placeholder="Zip Code" />
+    <div class="error" *ngIf="hasError(addressGroup, 'zip', 'required')">
+      Zip Code is required
+    </div>
+    <div class="error" *ngIf="hasError(addressGroup, 'zip', 'minlength')">
+      Zip Code must be at least 6 characters
+    </div>
+    <input formControlName="country" placeholder="Country" />
+    <div class="error" *ngIf="hasError(addressGroup, 'country', 'required')">
+      Country is required
+    </div>
+  </form>
+
+  <!-- STEP 3 -->
+  <form *ngIf="currentStep() === 3" [formGroup]="accountGroup">
+    <h2>Account Info</h2>
+    <input formControlName="username" placeholder="Username" />
+    <input type="password" formControlName="password" placeholder="Password" />
+    <input
+      type="password"
+      formControlName="confirmPassword"
+      placeholder="Confirm Password"
+    />
+    <div class="error" *ngIf="hasFormError('mismatch')">
+      Passwords must match
+    </div>
+    <label
+      ><input type="checkbox" formControlName="agree" /> I agree to terms</label
+    >
+  </form>
+
+  <!-- Buttons -->
+  <div class="buttons">
+    <button (click)="prevStep()" [disabled]="isFirstStep()">Back</button>
+    <button *ngIf="!isLastStep()" (click)="nextStep()">Next</button>
+    <button *ngIf="isLastStep()" (click)="submit()" [disabled]="submitting()">
+      {{ submitting() ? "Submitting…" : "Submit" }}
+    </button>
+  </div>
+</div>

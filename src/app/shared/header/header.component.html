@@ -1,0 +1,44 @@
+<nav class="header-nav">
+  <ul>
+    <li><a href="#about" (click)="scrollTo('about', $event)">About</a></li>
+    <li><a href="#skills" (click)="scrollTo('skills', $event)">Skills</a></li>
+    <li class="has-submenu">
+      <a href="#projects" (click)="scrollTo('projects', $event)">Projects</a>
+      <ul class="submenu">
+        <li>
+          <a
+            [routerLink]="['/conference-agenda']"
+            (click)="scrollTo('project1', $event)"
+            >Conference Agenda</a
+          >
+        </li>
+        <li>
+          <a
+            [routerLink]="['/user-flow']"
+            (click)="scrollTo('project1', $event)"
+            >User Flow</a
+          >
+        </li>
+        <li>
+          <a [routerLink]="['/onboarding']">Onboarding</a>
+        </li>
+        <li>
+          <a [routerLink]="['/AG-Grid']">AG-Grid</a>
+        </li>
+        <!-- <li>
+          <a href="#project2" (click)="scrollTo('project2', $event)"
+            >Project 2</a
+          >
+        </li>
+        <li>
+          <a href="#project3" (click)="scrollTo('project3', $event)"
+            >Project 3</a
+          >
+        </li> -->
+      </ul>
+    </li>
+    <li>
+      <a href="#contact" (click)="scrollTo('contact', $event)">Contact</a>
+    </li>
+  </ul>
+</nav>

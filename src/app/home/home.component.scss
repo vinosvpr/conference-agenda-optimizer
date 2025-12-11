@@ -1,0 +1,171 @@
+html {
+  scroll-behavior: smooth;
+}
+
+.section {
+  padding: 5rem 2rem;
+  text-align: center;
+  color: #f8fafc;
+  font-family: "Poppins", sans-serif;
+}
+
+/* ✅ About Section */
+.about {
+  background: linear-gradient(135deg, #002d25, #004f41);
+  border-top: 5px solid #00cd9b;
+}
+
+/* ✅ Skills Section */
+.skills {
+  background: linear-gradient(135deg, #004f41, #007960);
+  border-top: 5px solid #00cd9b;
+}
+
+/* ✅ Projects Section */
+// .projects {
+//   background: linear-gradient(135deg, #007960, #00a07b);
+//   border-top: 5px solid #00cd9b;
+// }
+.projects {
+  background: #007b62;
+  color: #fff;
+
+  .section-title {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  .projects-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .project-card {
+    background-color: #008b69;
+    border-radius: 10px;
+    padding: 1.5rem;
+    flex: 1 1 calc(29.333% - 1.5rem);
+    min-width: 280px;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+    text-align: left;
+    transition: all 0.3s ease;
+
+    h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #e8e8e8;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.5rem 1.2rem;
+      background: #00cd9b;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.3s ease;
+
+      &:hover {
+        background: #00b889;
+      }
+    }
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  /* Responsive breakpoints */
+  @media (max-width: 900px) {
+    .project-card {
+      flex: 1 1 calc(45% - 1rem);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .project-card {
+      flex: 1 1 100%;
+    }
+  }
+}
+
+/* ✅ Contact Section */
+.contact {
+  background: linear-gradient(135deg, #002d25, #004f41);
+  border-top: 5px solid #00cd9b;
+}
+
+/* Titles */
+h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: #00cd9b;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Skills List */
+ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+ul li {
+  background-color: #003e34;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  color: #f8fafc;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+ul li:hover {
+  background-color: #00cd9b;
+  color: #002d25;
+  transform: translateY(-3px);
+}
+
+/* Project Cards */
+.project-card {
+  background-color: #004f41;
+  border-radius: 10px;
+  padding: 1.5rem;
+  margin: 1.5rem auto;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s, border 0.3s;
+  border: 2px solid transparent;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  border: 2px solid #00cd9b;
+}
+
+/* Links */
+a {
+  color: #00cd9b;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+a:hover {
+  color: #02f5b9;
+  text-decoration: underline;
+}

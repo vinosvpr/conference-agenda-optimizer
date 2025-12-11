@@ -1,3 +1,17 @@
 <div class="app-container">
-  <app-conference-agenda></app-conference-agenda>
+  <!-- <app-header></app-header> -->
+  <!-- <app-conference-agenda></app-conference-agenda> -->
+  <!-- <app-home></app-home> -->
+  <app-header></app-header>
+
+  <router-outlet></router-outlet>
+  <!-- Scroll to Top Button -->
+  <button
+    class="scroll-to-top"
+    (click)="scrollToTop()"
+    [class.visible]="showScrollTop"
+    aria-label="Go to top"
+  >
+    <span class="arrow-up">↑</span>
+  </button>
 </div>

@@ -1,0 +1,65 @@
+.header-nav {
+  background-color: #00cd9b;
+  padding: 1rem;
+  margin: 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    li {
+      position: relative;
+
+      a {
+        text-decoration: none;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        display: block;
+        transition: all 0.3s ease;
+
+        &:hover {
+          font-weight: 500;
+          color: #004d3b;
+        }
+      }
+
+      /* Submenu styling */
+      .submenu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #00cd9b;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        min-width: 180px;
+        border-radius: 4px;
+        z-index: 100;
+
+        li {
+          a {
+            color: #fff;
+            padding: 0.5rem 1rem;
+            white-space: nowrap;
+
+            &:hover {
+              background-color: darken(#00cd9b, 5%);
+            }
+          }
+        }
+      }
+
+      /* Show submenu on hover */
+      &:hover > .submenu {
+        display: block;
+      }
+    }
+  }
+}
